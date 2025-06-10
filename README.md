@@ -6,7 +6,7 @@ In this application, Kubernetes has been chosen as the platform to host their ap
 
 ![Miztiik Automation: Kubernetes Security with Network Policies](images/eks_security_with_network_policies_eks_security_with_network_policies_architecture_00.png)
 
-## 🎯 Solutions
+##  Solutions
 
 By default, network traffic in a Kubernetes cluster can flow freely between pods and also leave the cluster network altogether. In an EKS cluster, because pods share their node’s EC2 security groups, the pods can make any network connection that the nodes can. Creating restrictions to allow only necessary service-to-service and cluster egress connections decreases the number of potential targets for malicious or misconfigured pods and limits their ability to exploit the cluster resources.
 
@@ -19,18 +19,18 @@ Another thing to note is that network policies are namespaced resources and only
 
 In this blog, I will show how to deploy a simple network policy allow and deny access to pods on Amazon EKS on using calico.
 
-1. ## 🧰 Prerequisites
+1. ##  Prerequisites
 
    This demo, instructions, scripts and cloudformation template is designed to be run in `us-east-1`. With few modifications you can try it out in other regions as well(_Not covered here_).
 
-   - 🛠 AWS CLI Installed & Configured - [Get help here](https://youtu.be/TPyyfmQte0U)
-   - 🛠 AWS CDK Installed & Configured - [Get help here](https://www.youtube.com/watch?v=MKwxpszw0Rc)
-   - 🛠 Python Packages, _Change the below commands to suit your OS, the following is written for amzn linux 2_
+   -  AWS CLI Installed & Configured - [Get help here](https://youtu.be/TPyyfmQte0U)
+   -  AWS CDK Installed & Configured - [Get help here](https://www.youtube.com/watch?v=MKwxpszw0Rc)
+   -  Python Packages, _Change the below commands to suit your OS, the following is written for amzn linux 2_
      - Python3 - `yum install -y python3`
      - Python Pip - `yum install -y python-pip`
      - Virtualenv - `pip3 install virtualenv`
 
-1. ## ⚙️ Setting up the environment
+1. ##  Setting up the environment
 
    - Get the application code
 
@@ -39,7 +39,7 @@ In this blog, I will show how to deploy a simple network policy allow and deny a
      cd eks-security-with-network-policies
      ```
 
-1. ## 🚀 Prepare the dev environment to run AWS CDK
+1. ##  Prepare the dev environment to run AWS CDK
 
    We will use `cdk` to make our deployments easier. Lets go ahead and install the necessary components.
 
@@ -70,7 +70,7 @@ In this blog, I will show how to deploy a simple network policy allow and deny a
    ssm-agent-installer-daemonset-stack
    ```
 
-1. ## 🚀 Deploying the application
+1. ## Deploying the application
 
    Let us walk through each of the stacks,
 
@@ -119,7 +119,7 @@ In this blog, I will show how to deploy a simple network policy allow and deny a
 
      After successfully deploying the stack, You can connect to the worker nodes instance using SSM Session Manager.
 
-1. ## 🔬 Testing the solution
+1. ##  Testing the solution
 
    To start with network policies, we need a plugin to enforce those policies. In this blog we will use Calico<sup>[3]</sup>. All the manifest to deploy the namespace, pods and network policies are available under this directory in this repo `stacks/k8s_utils/sample_manifests/`
 
@@ -237,11 +237,11 @@ In this blog, I will show how to deploy a simple network policy allow and deny a
 
       As you can see, you cannot reach the blue pod. If you create a container in another namespace and try to reach the blue pod, it will time out.
 
-1. ## 📒 Conclusion
+1. ##  Conclusion
 
    Here we have demonstrated how to use Kubernetes network policies. These recommendations provide a good starting point, but network policies are much more complicated. If you’re interested in exploring them in more detail, check out these network policy recipes<sup>[4]</sup>.
 
-1. ## 🧹 CleanUp
+1. ##  CleanUp
 
    If you want to destroy all the resources created by the stack, Execute the below command to delete the stack, or _you can delete the stack from console as well_
 
@@ -263,39 +263,18 @@ In this blog, I will show how to deploy a simple network policy allow and deny a
 
    This is not an exhaustive list, please carry out other necessary steps as maybe applicable to your needs.
 
-## 📌 Who is using this
+##  Who is using this
 
 This repository aims to show how to use kubernetes network policies to secure AWS EKS to new developers, Solution Architects & Ops Engineers in AWS. Based on that knowledge these Udemy [course #1][102], [course #2][101] helps you build complete architecture in AWS.
 
-### 💡 Help/Suggestions or 🐛 Bugs
+###  Help/Suggestions or  Bugs
 
 Thank you for your interest in contributing to our project. Whether it is a bug report, new feature, correction, or additional documentation or solutions, we greatly value feedback and contributions from our community. [Start here](/issues)
 
-### 👋 Buy me a coffee
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q41QDGK) Buy me a [coffee ☕][900].
-
-### 📚 References
+### References
 
 1. [Kubernetes Docs: Network Policies][1]
 1. [AWS Docs: Installing Calico on Amazon EKS][2]
 1. [Calico Docs: Network Security][3]
 1. [Kubernetes Network Policy Recipes][10]
 
-### 🏷️ Metadata
-
-![miztiik-success-green](https://img.shields.io/badge/Miztiik:Automation:Level-200-blue)
-
-**Level**: 200
-
-[1]: https://kubernetes.io/docs/concepts/services-networking/network-policies/
-[2]: https://docs.aws.amazon.com/eks/latest/userguide/calico.html
-[3]: https://docs.projectcalico.org/security/kubernetes-network-policy
-[4]: https://github.com/ahmetb/kubernetes-network-policy-recipes
-[100]: https://www.udemy.com/course/aws-cloud-security/?referralCode=B7F1B6C78B45ADAF77A9
-[101]: https://www.udemy.com/course/aws-cloud-security-proactive-way/?referralCode=71DC542AD4481309A441
-[102]: https://www.udemy.com/course/aws-cloud-development-kit-from-beginner-to-professional/?referralCode=E15D7FB64E417C547579
-[103]: https://www.udemy.com/course/aws-cloudformation-basics?referralCode=93AD3B1530BC871093D6
-[899]: https://www.udemy.com/user/n-kumar/
-[900]: https://ko-fi.com/miztiik
-[901]: https://ko-fi.com/Q5Q41QDGK
